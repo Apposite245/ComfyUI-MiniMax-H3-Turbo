@@ -38,8 +38,8 @@ release — see the [MiniMax-H3 tutorial](https://docs.comfy.org/tutorials/video
 
 Start from the **official MiniMax-H3 workflow** (t2v or i2v) and make two changes:
 
-1. Insert **MiniMax-H3 Turbo LoRA** between the model loader and the sampler
-   (`... → Load Diffusion Model → MiniMax-H3 Turbo LoRA → SamplerCustomAdvanced`),
+1. Insert **MiniMax-H3 Turbo LoRA** between the model loader and the Scheduler
+   (`... → Load Diffusion Model → MiniMax-H3 Turbo LoRA → BasicScheduler`),
    and pick the turbo `.safetensors`.
 2. Replace the sampler feeding `SamplerCustomAdvanced` with **MiniMax-H3 Turbo
    Sampler (4-step)**, and set the scheduler node to **4 steps**
