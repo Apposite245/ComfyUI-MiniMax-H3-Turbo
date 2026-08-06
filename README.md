@@ -47,7 +47,13 @@ Start from the **official MiniMax-H3 workflow** (t2v or i2v) and make two change
 
 Everything else — the conditioning nodes, VAE decode, audio output — stays as in
 the official workflow, so **both text-to-video and image-to-video** work
-unchanged.
+unchanged. A ready-made t2v workflow is in
+[`example_workflows/`](example_workflows/minimax_h3_t2v_turbo.json) — drag it
+into ComfyUI to see the wiring.
+
+**Base model**: use a **non-pruned** MiniMax-H3 base — the `bf16` or the full
+`int8_convrot` DiT. The **pruned** variants (`pruned_int8`, `pruned_fp8`) use a
+different time-conditioning layer and are **not compatible** with this LoRA.
 
 ## Why a custom sampler
 
@@ -60,7 +66,8 @@ LoRA and use a stock sampler at 4 steps and the audio is broken, this is why.
 
 ## Notes
 
-- **Steps**: 4 is the design point. The scheduler must be `simple`.
+- **Steps**: any count **≥ 4** works and **more steps look better** — 4 is the
+  fast default, 6 or 8 are cleaner. Keep the scheduler on `simple`.
 - **Resolution / length**: width and height are multiples of 32 (short edge
   typically 768); frame count is at 24 fps and snaps to the model's 17·k+5 grid
   (124 ≈ 5 s). Validated range ~124–362 frames.
