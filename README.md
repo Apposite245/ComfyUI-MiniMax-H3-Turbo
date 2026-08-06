@@ -66,8 +66,9 @@ LoRA and use a stock sampler at 4 steps and the audio is broken, this is why.
 
 ## Notes
 
-- **Steps**: any count **≥ 4** works and **more steps look better** — 4 is the
-  fast default, 6 or 8 are cleaner. Keep the scheduler on `simple`.
+- **Steps**: 4 works, but this early checkpoint is under-trained, so the
+  **comfort zone for sharpness is 6–8 steps**, not 4 (4 comes out softer). Any
+  count **≥ 4** is valid and **more steps look better**. Scheduler stays `simple`.
 - **Resolution / length**: width and height are multiples of 32 (short edge
   typically 768); frame count is at 24 fps and snaps to the model's 17·k+5 grid
   (124 ≈ 5 s). Validated range ~124–362 frames.
